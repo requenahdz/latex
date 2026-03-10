@@ -1,0 +1,259 @@
+\documentclass[11pt,a4paper]{article}
+
+%--------------------------------
+% Paquetes y Configuración Básica
+%--------------------------------
+\usepackage[spanish,es-tabla]{babel} % Español y "Tabla" en lugar de "Cuadro"
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% Fuentes de Alta Calidad (Upgrade Profesional)
+\usepackage[bitstream-charter]{mathdesign} % Charter para el cuerpo (serif con gran legibilidad)
+\usepackage[defaultsans,scale=0.95]{lato} % Lato para títulos (sans-serif moderna y humanista)
+\usepackage{inconsolata} % Inconsolata para código (clara y moderna)
+
+% Diseño de Página
+\usepackage{geometry}
+\geometry{
+    top=2.5cm,
+    bottom=2.5cm,
+    left=2.5cm,
+    right=2.5cm,
+    headheight=15pt
+}
+\usepackage{parskip} % Párrafos con espacio vertical en lugar de sangría (estilo moderno)
+\usepackage{setspace}
+\setstretch{1.2} % Interlineado ligeramente mayor para legibilidad
+
+% Gráficos y Tablas
+\usepackage{graphicx}
+\usepackage{booktabs} % Tablas profesionales
+\usepackage{float}
+\usepackage{tikz} % Para diseño de la portada
+\usetikzlibrary{calc, fadings, patterns, shadows.blur, decorations.pathmorphing, shapes.geometric} % Librerías avanzadas
+
+% Colores
+\usepackage{xcolor}
+\definecolor{primary}{RGB}{0, 45, 98} % Azul Corporativo Profundo (Navy)
+\definecolor{primaryLight}{RGB}{0, 85, 164} % Azul Brillante para degradados
+\definecolor{secondary}{RGB}{60, 60, 60} % Gris plomo
+\definecolor{accent}{RGB}{0, 180, 216} % Cyan Eléctrico para detalles
+\definecolor{silver}{RGB}{230, 230, 235} % Gris muy claro para fondos sutiles
+
+%--------------------------------
+% Estilo de Títulos (Moderno y Limpio)
+%--------------------------------
+\usepackage{titlesec}
+\newcommand{\sectionbreak}{\clearpage} % Salto de página automático antes de cada sección
+
+% Sección: Grande, Sans-Serif, Color Primario, Línea inferior
+\titleformat{\section}
+  {\color{primary}\sffamily\Large\bfseries}
+  {\thesection}{1em}{}[\titlerule]
+
+% Subsección: Mediano, Sans-Serif, Color Secundario
+\titleformat{\subsection}
+  {\color{secondary}\sffamily\large\bfseries}
+  {\thesubsection}{1em}{}
+
+%--------------------------------
+% Encabezado y Pie de Página
+%--------------------------------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhead[L]{\sffamily\small\color{secondary}Nombre del Proyecto}
+\fancyhead[R]{\sffamily\small\color{secondary}\today}
+\fancyfoot[C]{\sffamily\small\thepage}
+
+%--------------------------------
+% Hipervínculos
+%--------------------------------
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=primary,
+    filecolor=primary,      
+    urlcolor=primary,
+    pdftitle={Título del Documento},
+    pdfpagemode=FullScreen,
+}
+
+%--------------------------------
+% Documento
+%--------------------------------
+\begin{document}
+
+%--------------------------------
+% Portada Estilo "Horizonte Estratégico" (Edición Elite - Refinada)
+%--------------------------------
+\begin{titlepage}
+    \thispagestyle{empty}
+    \begin{tikzpicture}[remember picture,overlay]
+        % Coordenadas base
+        \coordinate (NW) at (current page.north west);
+        \coordinate (NE) at (current page.north east);
+        \coordinate (SW) at (current page.south west);
+        \coordinate (SE) at (current page.south east);
+        \coordinate (Center) at (current page.center);
+
+        % 1. Fondo Tecnológico Sutil
+        \fill[white] (NW) rectangle (SE);
+        % Malla de puntos muy sutil (Grid tecnológica)
+        \foreach \x in {-9,-7,...,9} {
+            \foreach \y in {-13,-11,...,13} {
+                \fill[gray!5] ($(Center) + (\x,\y)$) circle (1.5pt);
+            }
+        }
+        
+        % Encabezado Superior Sólido (Diseño Institucional y Profesional)
+        \fill[primary] (NW) rectangle ($(NE)+(0,-2)$);
+        % Degradado sutil para calidad
+        \shade[left color=primary, right color=primaryLight] (NW) rectangle ($(NE)+(0,-2)$);
+        % Línea de acento fina inferior
+        \fill[accent] ($(NW)+(0,-2)$) rectangle ($(NE)+(0,-2.15)$);
+
+        % 2. Cuerpo Central
+        \node[anchor=center, align=center] at (Center) {
+            \begin{minipage}{16cm}
+                \begin{center}
+                    % Pre-título eliminado
+                    \vspace{1cm}
+                    
+                    % TÍTULO PRINCIPAL
+                    % Juego de pesos y tamaños monumental
+                    \sffamily\bfseries\fontsize{45}{50}\selectfont\color{primary} 
+                    TÍTULO DEL PROYECTO
+                    \\[1cm]
+                    
+                    % Línea de acento central con rombo
+                    \begin{tikzpicture}
+                        \draw[accent, line width=2pt] (-4,0) -- (4,0);
+                        \fill[white] (0,0) circle (6pt);
+                        \node[regular polygon, regular polygon sides=4, fill=accent, inner sep=2.5pt] at (0,0) {};
+                    \end{tikzpicture}
+                    \\[1cm]
+                    
+                    % Descripción elegante
+                    \sffamily\mdseries\large\color{secondary!80}
+                    "Una visión integral para el desarrollo sostenible y la innovación tecnológica."
+                \end{center}
+            \end{minipage}
+        };
+
+        % 3. Pie de Página (El diseño validado, preservado y pulido)
+        % Fondo principal
+        \fill[primary] (SW) rectangle ([yshift=3.5cm]SE);
+        
+        % Degradado sutil
+        \shade[left color=primary, right color=primaryLight, middle color=primary] (SW) rectangle ([yshift=3.5cm]SE);
+        
+        % Detalle superior del pie (Barra de acento)
+        \fill[accent] ([yshift=3.5cm]SW) rectangle ([yshift=3.6cm]SE);
+
+        % Información Izquierda (Estilizada)
+        \node[anchor=west, text=white, align=left] (infoLeft) at ([xshift=3cm, yshift=1.75cm]SW) {
+            \sffamily
+            \textbf{\LARGE Roberto A. Requena H.} \\[-0.1cm] 
+            \color{white!90}\normalsize\bfseries Ingeniero en Tecnologías de la Información
+        };
+      
+        % Información Derecha (Estilizada)
+        \node[anchor=east, text=white, align=right] (infoRight) at ([xshift=-3cm, yshift=1.75cm]SE) {
+            \sffamily
+            \textbf{\Large requenahdz@gmail.com} \\
+            \color{white!80}\small Monterrey, N.L.
+        };
+      
+    \end{tikzpicture}
+\end{titlepage}
+
+\newpage
+
+% Resumen con un estilo ligeramente diferente
+\vspace*{1cm}
+\begin{center}
+    \color{primary}\sffamily\Large\bfseries Resumen Ejecutivo
+\end{center}
+\begin{quote}
+    \small
+    Este documento ha sido modernizado para presentar una estética más limpia y profesional. Se utilizan fuentes sans-serif para los títulos y una fuente serif de alta calidad (Palatino) para el cuerpo del texto. Los colores se han ajustado para ser más sobrios y elegantes.
+\end{quote}
+
+\vspace{2cm}
+
+% Tabla de Contenidos
+{
+  \hypersetup{linkcolor=black} % Enlaces negros en el índice para limpieza visual
+  \tableofcontents
+}
+
+%--------------------------------
+\section{Introducción}
+
+Este documento presenta el objetivo, alcance y contexto del proyecto con un diseño renovado. La combinación de fuentes y el espaciado mejorado facilitan la lectura en pantallas y en papel.
+
+\subsection{Objetivo}
+
+Describir claramente el propósito del documento. El uso del paquete \texttt{parskip} elimina la sangría de la primera línea y añade espacio entre párrafos, lo cual es común en documentos técnicos modernos.
+
+\subsection{Alcance}
+
+Definir qué incluye y qué no incluye este documento.
+
+%--------------------------------
+\section{Descripción del Proyecto}
+
+Explicar el proyecto en detalle. Observe cómo los títulos de las secciones ahora tienen una línea horizontal que ayuda a separar visualmente el contenido.
+
+\subsection{Contexto}
+
+Información general del proyecto. Los colores utilizados (azul y gris) transmiten profesionalismo sin ser distractores.
+
+\subsection{Problema}
+
+Descripción del problema que se busca resolver.
+
+%--------------------------------
+\section{Metodología}
+
+Explicar cómo se desarrollará el proyecto.
+
+\subsection{Fases}
+
+Las listas también se benefician del espaciado mejorado:
+
+\begin{itemize}
+    \item \textbf{Planeación}: Definición de requerimientos y cronograma.
+    \item \textbf{Desarrollo}: Implementación de la solución.
+    \item \textbf{Implementación}: Despliegue en entorno productivo.
+    \item \textbf{Evaluación}: Análisis de resultados.
+\end{itemize}
+
+%--------------------------------
+\section{Resultados Esperados}
+
+Descripción de los resultados esperados.
+
+\begin{enumerate}
+    \item Mejora en procesos operativos.
+    \item Incremento de eficiencia del 20\%.
+    \item Reducción de costos significativa.
+\end{enumerate}
+
+%--------------------------------
+\section{Conclusiones}
+
+Resumen final del documento. Este diseño es fácilmente extensible y mantiene una estructura clara.
+
+%--------------------------------
+\section{Referencias}
+
+\begin{itemize}
+    \item Fuente 1: Autor, A. (2023). \textit{Título del Libro}. Editorial.
+    \item Fuente 2: Sitio Web. \url{https://www.ejemplo.com}
+\end{itemize}
+
+\end{document}
