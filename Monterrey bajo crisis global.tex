@@ -1,0 +1,439 @@
+\documentclass[11pt,a4paper]{article}
+
+%--------------------------------
+% Paquetes y Configuración Básica
+%--------------------------------
+\usepackage[spanish,es-tabla]{babel} % Español y "Tabla" en lugar de "Cuadro"
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% Fuentes de Alta Calidad (Upgrade Profesional)
+\usepackage[bitstream-charter]{mathdesign} % Charter para el cuerpo (serif con gran legibilidad)
+\usepackage[defaultsans,scale=0.95]{lato} % Lato para títulos (sans-serif moderna y humanista)
+\usepackage{inconsolata} % Inconsolata para código (clara y moderna)
+
+% Diseño de Página
+\usepackage{geometry}
+\geometry{
+    top=2.5cm,
+    bottom=2.5cm,
+    left=2.5cm,
+    right=2.5cm,
+    headheight=15pt
+}
+\usepackage{parskip} % Párrafos con espacio vertical en lugar de sangría (estilo moderno)
+\usepackage{setspace}
+\setstretch{1.2} % Interlineado ligeramente mayor para legibilidad
+
+% Gráficos y Tablas
+\usepackage{graphicx}
+\usepackage{booktabs} % Tablas profesionales
+\usepackage{float}
+\usepackage{tikz} % Para diseño de la portada
+\usetikzlibrary{calc, fadings, patterns, shadows.blur, decorations.pathmorphing, shapes.geometric} % Librerías avanzadas
+
+% Colores
+\usepackage{xcolor}
+\definecolor{primary}{RGB}{0, 45, 98} % Azul Corporativo Profundo (Navy)
+\definecolor{primaryLight}{RGB}{0, 85, 164} % Azul Brillante para degradados
+\definecolor{secondary}{RGB}{60, 60, 60} % Gris plomo
+\definecolor{accent}{RGB}{0, 180, 216} % Cyan Eléctrico para detalles
+\definecolor{silver}{RGB}{230, 230, 235} % Gris muy claro para fondos sutiles
+
+%--------------------------------
+% Estilo de Títulos (Moderno y Limpio)
+%--------------------------------
+\usepackage{titlesec}
+\newcommand{\sectionbreak}{\clearpage} % Salto de página automático antes de cada sección
+
+% Sección: Grande, Sans-Serif, Color Primario, Línea inferior
+\titleformat{\section}
+  {\color{primary}\sffamily\Large\bfseries}
+  {\thesection}{1em}{}[\titlerule]
+
+% Subsección: Mediano, Sans-Serif, Color Secundario
+\titleformat{\subsection}
+  {\color{primary}\sffamily\large\bfseries}
+  {\thesubsection}{1em}{}
+
+\newcommand{\QAItem}[3]{%
+\subsection{#1}
+\noindent{\color{secondary}\sffamily\bfseries #2}\par
+\vspace{0.20cm}
+#3\par
+\vspace{0.20cm}
+}
+
+%--------------------------------
+% Encabezado y Pie de Página
+%--------------------------------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhead[L]{\sffamily\small\color{secondary}Monterrey bajo crisis global}
+\fancyhead[R]{\sffamily\small\color{secondary}\today}
+\fancyfoot[C]{\sffamily\small\thepage}
+
+%--------------------------------
+% Hipervínculos
+%--------------------------------
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=primary,
+    filecolor=primary,      
+    urlcolor=primary,
+    pdftitle={Título del Documento},
+    pdfpagemode=FullScreen,
+}
+
+%--------------------------------
+% Documento
+%--------------------------------
+\begin{document}
+
+%--------------------------------
+% Portada Estilo "Horizonte Estratégico" (Edición Elite - Refinada)
+%--------------------------------
+\begin{titlepage}
+    \thispagestyle{empty}
+    \begin{tikzpicture}[remember picture,overlay]
+        % Coordenadas base
+        \coordinate (NW) at (current page.north west);
+        \coordinate (NE) at (current page.north east);
+        \coordinate (SW) at (current page.south west);
+        \coordinate (SE) at (current page.south east);
+        \coordinate (Center) at (current page.center);
+
+        % 1. Fondo Tecnológico Sutil
+        \fill[white] (NW) rectangle (SE);
+        % Malla de puntos muy sutil (Grid tecnológica)
+        \foreach \x in {-9,-7,...,9} {
+            \foreach \y in {-13,-11,...,13} {
+                \fill[gray!5] ($(Center) + (\x,\y)$) circle (1.5pt);
+            }
+        }
+        
+        % Encabezado Superior Sólido (Diseño Institucional y Profesional)
+        \fill[primary] (NW) rectangle ($(NE)+(0,-2)$);
+        % Degradado sutil para calidad
+        \shade[left color=primary, right color=primaryLight] (NW) rectangle ($(NE)+(0,-2)$);
+        % Línea de acento fina inferior
+        \fill[accent] ($(NW)+(0,-2)$) rectangle ($(NE)+(0,-2.15)$);
+
+        % 2. Cuerpo Central
+        \node[anchor=center, align=center] at (Center) {
+            \begin{minipage}{16cm}
+                \begin{center}
+                    % Pre-título eliminado
+                    \vspace{1cm}
+                    
+                    % TÍTULO PRINCIPAL
+                    % Juego de pesos y tamaños monumental
+                    \sffamily\bfseries\fontsize{45}{50}\selectfont\color{primary} 
+                    MONTERREY BAJO CRISIS GLOBAL
+                    \\[1cm]
+                    
+                    % Línea de acento central con rombo
+                    \begin{tikzpicture}
+                        \draw[accent, line width=2pt] (-4,0) -- (4,0);
+                        \fill[white] (0,0) circle (6pt);
+                        \node[regular polygon, regular polygon sides=4, fill=accent, inner sep=2.5pt] at (0,0) {};
+                    \end{tikzpicture}
+                    \\[1cm]
+                    
+                    % Descripción elegante
+                    \sffamily\mdseries\large\color{secondary!80}
+                    Administración Económica
+                \end{center}
+            \end{minipage}
+        };
+
+        % 3. Pie de Página (El diseño validado, preservado y pulido)
+        % Fondo principal
+        \fill[primary] (SW) rectangle ([yshift=3.5cm]SE);
+        
+        % Degradado sutil
+        \shade[left color=primary, right color=primaryLight, middle color=primary] (SW) rectangle ([yshift=3.5cm]SE);
+        
+        % Detalle superior del pie (Barra de acento)
+        \fill[accent] ([yshift=3.5cm]SW) rectangle ([yshift=3.6cm]SE);
+
+        % Información Izquierda (Estilizada)
+        \node[anchor=west, text=white, align=left] (infoLeft) at ([xshift=3cm, yshift=1.75cm]SW) {
+            \sffamily
+            \textbf{\LARGE Roberto Requena} \\[-0.1cm] 
+            \color{white!90}\normalsize\bfseries Ingeniero en Tecnologías de la Información
+        };
+      
+        % Información Derecha (Estilizada)
+        \node[anchor=east, text=white, align=right] (infoRight) at ([xshift=-3cm, yshift=1.75cm]SE) {
+            \sffamily
+            \textbf{\Large requenahdz@gmail.com} \\
+            \color{white!80}\small Monterrey, N.L.
+        };
+      
+    \end{tikzpicture}
+\end{titlepage}
+
+\newpage
+% Resumen con un estilo ligeramente diferente
+\vspace*{1cm}
+
+
+\noindent{\color{primary}\sffamily\Large\bfseries Introducción}\par
+\vspace{0.20cm}
+\begingroup
+\setlength{\parindent}{0pt}\noindent\ignorespaces
+Este informe analiza la viabilidad estratégica de Monterrey como plataforma industrial en un entorno de crisis geopolítica y presión macroeconómica. El punto de partida es que el desempeño de una planta ya no depende únicamente de su productividad interna, sino del costo y la disponibilidad de energía, insumos críticos y rutas logísticas, así como del riesgo cambiario y financiero que rodea a México y a sus principales socios comerciales.
+
+A partir de preguntas guía, se evalúan los principales mecanismos económicos que afectan la competitividad: el impacto de un petróleo en \$100 USD sobre costos energéticos y logísticos en un país que importa una proporción relevante de combustibles; la asignación de producción entre plantas bajo el criterio de igualación de costos marginales; el peligro de fijar precios con esquemas de costo más margen en escenarios de estanflación; y la segmentación de mercados para capturar valor en un contexto de escasez. El análisis incorpora, además, el ciclo económico (PIB, tasas de interés y demanda agregada), el rol del tipo de cambio real, y la evidencia regional que advierte sobre presiones de transporte y energía en Nuevo León, donde la integración con Texas opera simultáneamente como blindaje y como fuente de exposición.
+
+Finalmente, el documento cierra con un diagnóstico de resiliencia (nuevo FODA) que sintetiza blindajes, vulnerabilidades y aceleradores competitivos para 2026, considerando que la estabilidad social y la disponibilidad de bienes esenciales (por ejemplo, fertilizantes y medicamentos) también influyen en la continuidad operativa y en el costo efectivo de la mano de obra.
+\par
+\endgroup
+
+\vspace{2cm}
+
+% Tabla de Contenidos
+{
+  \hypersetup{linkcolor=black} % Enlaces negros en el índice para limpieza visual
+  \tableofcontents
+}
+
+%--------------------------------
+\section{ANÁLISIS ESTRATÉGICO }
+\QAItem
+{La Paradoja Energética}
+{Considerando que México importa el 54\% de su gasolina de EE.UU., ¿cómo afecta el alza del crudo a \$100 USD la competitividad de costos de la planta en Monterrey, incluso si el gobierno subsidia el IEPS?}
+{Cuando el crudo sube a \$100 USD, la planta enfrenta un aumento de costos que se transmite por energía, fletes y suministros vinculados a combustibles e insumos petroquímicos. Aunque México exporta petróleo y tiene reservas, y un precio alto puede dar margen fiscal temporal para sostener apoyos como el IEPS, la presión sobre costos no desaparece porque el país importa una proporción alta de gasolinas y refinados. Si el subsidio se prolonga, crece el riesgo fiscal y con ello la volatilidad cambiaria y el costo del crédito, lo que encarece insumos importados y eleva el costo marginal.
+
+\begin{itemize}
+\item Mecanismo principal. Crudo alto $\rightarrow$ combustibles y logística más caros $\rightarrow$ mayor costo marginal por unidad.
+\item Riesgo macro. Subsidio prolongado $\rightarrow$ presión fiscal $\rightarrow$ mayor volatilidad y financiamiento más caro.
+\item Tipo de Cambio Real (TCR). \( \mathrm{TCR} = E \cdot \frac{P^{*}}{P} \). Si el peso se deprecia pero la inflación interna sube más rápido, el TCR se aprecia y se pierde competitividad exportadora.
+\end{itemize}
+
+Para visualizar el efecto, se compara el costo marginal de Monterrey y Alemania bajo distintos escenarios de crudo con un índice base 100 en \$80 USD. Estos valores deben sustituirse por los costos reales estimados de la empresa.
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+Planta & \$80 USD & \$100 USD & \$120 USD \\
+\midrule
+Monterrey (índice) & 100 & 112 & 125 \\
+Alemania (índice)  & 115 & 120 & 128 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{0.30cm}
+
+\begin{center}
+\begin{tikzpicture}[x=1mm,y=1pt]
+\draw[-latex] (0,0) -- (70,0) node[right]{Precio del crudo};
+\draw[-latex] (0,0) -- (0,140) node[above]{Índice de costo marginal};
+\draw (0,100) -- (-2,100) node[left]{100};
+\draw (0,120) -- (-2,120) node[left]{120};
+\draw (0,140) -- (-2,140) node[left]{140};
+
+\node[below] at (15,0) {\$80};
+\node[below] at (35,0) {\$100};
+\node[below] at (55,0) {\$120};
+
+\fill[primaryLight] (12,0) rectangle (15,100);
+\fill[gray!60] (15,0) rectangle (18,115);
+\fill[primaryLight] (32,0) rectangle (35,112);
+\fill[gray!60] (35,0) rectangle (38,120);
+\fill[primaryLight] (52,0) rectangle (55,125);
+\fill[gray!60] (55,0) rectangle (58,128);
+
+\fill[primaryLight] (60,130) rectangle (64,136);
+\node[anchor=west] at (65,133) {Monterrey};
+\fill[gray!60] (60,120) rectangle (64,126);
+\node[anchor=west] at (65,123) {Alemania};
+\end{tikzpicture}
+\end{center}
+}
+
+\newpage
+%--------------------------------
+\QAItem
+{Eficiencia en Múltiples Plantas}
+{AI Green Data Center debe decidir si cerrar Alemania o balancear la carga con Monterrey. ¿Bajo qué criterio de 'Costo Marginal' debería el Director General asignar la producción de microchips entre ambas plantas ante el encarecimiento global de los insumos químicos (azufre/aluminio)?}
+{El criterio es asignar producción con base en el costo marginal, es decir, enviar el volumen incremental a la planta que pueda fabricar una unidad adicional al menor costo total. Con el alza de insumos como azufre y aluminio, esta comparación debe actualizarse de forma continua porque cambia el costo unitario real.
+
+\begin{itemize}
+\item Calcule el costo marginal por unidad en cada planta con precios actuales de químicos, energía, mermas y logística.
+\item Asigne producción adicional a la planta con menor costo marginal hasta que los costos marginales se acerquen entre sí.
+\item Reserve en Alemania los procesos que requieran mayor precisión si eso reduce rechazos y baja el costo por unidad útil.
+\item Use Monterrey para volumen cuando su combinación de costos y logística hacia EE.UU. sea más competitiva.
+\end{itemize}
+
+Así se minimiza el costo total, se evita una decisión extrema de cierre y se mantiene flexibilidad ante la volatilidad de precios.}
+%--------------------------------
+\QAItem
+{Estrategia de Precios en estanflación}
+{Con el riesgo inminente de un estancamiento económico mundial y una inflación al alza en México, ¿por qué basar el precio de exportación en el modelo de 'Costo más Margen' (Mark-up) podría ser una trampa mortal para la utilidad de la empresa?}
+{En estanflación, el modelo de costo más margen es peligroso porque parte de costos inestables y de una demanda que se debilita. Si el precio sube automáticamente cada vez que suben energía, insumos o logística, aparecen tres riesgos clave.
+
+\begin{itemize}
+\item El precio sube cuando el cliente está más sensible y puede recortar pedidos o cambiar de proveedor.
+\item Se pierde volumen y con menos volumen se absorben peor los costos fijos, lo que reduce la utilidad real.
+\item Se ignoran señales de mercado como la disposición a pagar y la presión competitiva, así que el precio puede quedar fuera del rango aceptable.
+\end{itemize}
+
+Una alternativa más robusta es fijar precios por valor y por segmento, usar contratos indexados o en moneda fuerte, y proteger el margen con cláusulas de ajuste y gestión de riesgos.}
+%--------------------------------
+\QAItem
+{Discriminación de Precios de Emergencia}
+{Ante la escasez global de semiconductores por la crisis logística, ¿cómo podría AI Green Data Center segmentar sus mercados para capturar el excedente del consumidor en EE.UU. vs. el mercado interno mexicano?}
+{Ante una escasez global de semiconductores, AI Green Data Center puede segmentar por mercado según capacidad de pago y urgencia. En EE.UU., donde la demanda suele ser menos elástica y la urgencia operativa es mayor, conviene cobrar un precio premium a cambio de contratos prioritarios, entregas garantizadas y niveles de servicio más altos. En México, donde la demanda es más sensible al precio, conviene ofrecer condiciones más accesibles para sostener volumen y relaciones comerciales. Con esta separación, la empresa captura más excedente en el mercado dispuesto a pagar y mantiene presencia en el mercado interno sin destruir capacidad utilizada.}
+%--------------------------------
+\QAItem
+{El Ciclo Económico y el PIB}
+{Si el PIB de México sufre una desaceleración por la pausa en las inversiones internacionales (según advierte El Financiero), ¿debe AI Green Data Center ver a Monterrey como una inversión de crecimiento a largo plazo o solo como una base de operaciones transitoria?}
+{Una desaceleración del PIB mexicano puede debilitar la demanda interna y frenar inversión local en el corto plazo. Aun así, AI Green Data Center debe ver a Monterrey como una apuesta de largo plazo porque su valor depende menos del ciclo doméstico y más de su integración con Norteamérica. La cercanía con EE.UU., el marco del T-MEC y el ecosistema industrial la convierten en una plataforma exportadora resiliente incluso cuando el crecimiento interno es bajo. En la práctica, Monterrey funciona más como punto de acceso a cadenas regionales que como apuesta al mercado doméstico (Solís, 2026).}
+
+%--------------------------------
+\section{FUNDAMENTACIÓN Y CONTEXTO REGIONAL}
+%--------------------------------
+\QAItem
+{Contexto de Nuevo León}
+{Utilice las advertencias de CAINTRA sobre los costos de transporte y energía en la región. Explique cómo la integración logística de Monterrey con Texas puede ser tanto un escudo como un riesgo en tiempos de guerra.}
+{CAINTRA advierte que, si el conflicto se prolonga, Nuevo León enfrentará mayores costos de energía, transporte e insumos. Esto reduce parte de la ventaja de Monterrey como destino industrial. Al mismo tiempo, la integración con Texas funciona como un escudo porque permite abastecerse y exportar por carretera con menor exposición que las rutas marítimas largas afectadas por la crisis. También aporta certidumbre comercial a través del T-MEC.
+
+Esa misma integración es un riesgo porque crea dependencia. Si suben los energéticos, se encarecen los cruces fronterizos o se desacelera la economía de EE.UU., Monterrey recibe el golpe con rapidez en fletes, tiempos de entrega y demanda (Líder Empresarial, s. f.).}
+
+%--------------------------------
+
+\QAItem
+{Profundidad Académica}
+{No se limite a opiniones generales. Fundamente con lógica económica: ¿Cómo influye el 'tipo de cambio real' en su decisión? ¿Qué pasa con la 'demanda agregada' si los bancos centrales pausan la baja de tasas de interés?}
+{El tipo de cambio real mide la competitividad de producir en Monterrey frente a Alemania una vez que se ajustan precios e inflación. Una forma simple de verlo es
+\[
+TCR = E \times \frac{P^{*}}{P}
+\]
+donde $E$ es el tipo de cambio nominal, $P^{*}$ es el nivel de precios externo y $P$ es el nivel de precios local. Si el peso se deprecia, $E$ sube y eso puede hacer más competitiva la exportación. El punto clave es la inflación local. Si $P$ sube más rápido que $E$, el $TCR$ puede bajar y la ventaja competitiva desaparece aunque el peso se haya depreciado.
+
+Ejemplo simple. Si $E$ sube 10\% y $P$ sube 15\% con $P^{*}$ casi estable, entonces $TCR$ cae aproximadamente 4\%. En la práctica, esto significa que los costos en pesos se encarecen más rápido que el alivio cambiario. Además, si la planta depende de insumos importados, la depreciación sube su costo inmediato en pesos y puede reducir margen.
+
+Si los bancos centrales pausan la baja de tasas o mantienen tasas altas, la política monetaria se vuelve restrictiva. El crédito se encarece, se frena inversión y consumo, y cae la demanda agregada. Para la empresa, esto se traduce en un entorno con menor volumen potencial y mayor presión para competir con eficiencia, contratos de largo plazo y exportaciones.}
+
+%--------------------------------
+\QAItem
+{Análisis de Suministros}
+{Considere el impacto de la escasez de fertilizantes y medicamentos mencionada en los artículos como un factor que afecta la estabilidad social y la mano de obra local.}
+{La escasez de fertilizantes y medicamentos impacta más allá del sector porque presiona los precios de alimentos y eleva el costo de la atención médica (CNN en Español, 2026). Con menor poder adquisitivo y más inflación, suelen aparecer efectos laborales como mayores demandas salariales, rotación, ausentismo y tensión social. Todo esto puede afectar la estabilidad operativa de la planta.
+
+Para AI Green Data Center, el riesgo es doble. Puede subir el costo laboral real y también puede caer la productividad por factores de salud y estabilidad. Por eso, la viabilidad de Monterrey no depende solo de energía y logística. También depende de la resiliencia social del entorno ante choques de oferta.
+
+Plan de mitigación para reducir rotación y ausentismo en un choque de precios y escasez.
+
+\begin{itemize}
+\item Implemente bonos de despensa indexados a la inflación con revisiones periódicas y un tope definido para sostener poder adquisitivo sin perder control de costos.
+\item Refuerce bienestar y salud preventiva con convenios con clínicas locales, telemedicina, campañas de vacunación, apoyo a medicamentos esenciales y atención de salud mental.
+\item Cree un tablero de indicadores de rotación y ausentismo por turno y área, con umbrales de alerta y respuesta rápida mediante ajustes de horarios, transporte laboral y flexibilidad temporal.
+\item Active apoyos de corto plazo para hogares vulnerables, por ejemplo un fondo de emergencia y convenios de compra para canastas básicas, para reducir estrés financiero y mantener continuidad.
+\item Asegure continuidad de insumos críticos para el personal con acuerdos con farmacias cercanas y un stock mínimo en sitio de insumos médicos básicos para disminuir ausentismo por interrupciones locales.
+\end{itemize}}
+
+%--------------------------------
+
+\section{DIAGNÓSTICO DE RESILIENCIA (EL NUEVO FODA)}
+
+\begin{center}
+\small
+\begin{tabular}{p{0.24\textwidth} p{0.33\textwidth} p{0.33\textwidth}}
+\toprule
+\textbf{Categoría} & \textbf{Factor Clave} & \textbf{Acción Estratégica} \\
+\midrule
+Fortaleza (Blindaje) & Integración con Texas y logística terrestre & Contratos de largo plazo con transportistas tejanos \\
+Debilidad (Talón de Aquiles) & Dependencia de insumos importados y energía cara & Inversión en eficiencia operativa para bajar el costo marginal \\
+Oportunidad (Acelerador) & Falla de competidores que dependen de rutas marítimas (Dubái/Ormuz) & Posicionarse como 'Proveedor de Cercanía' con entregas garantizadas \\
+Amenaza & Estanflación y política monetaria restrictiva (tasas altas) & Evitar precios de costo más margen y fijar precios por valor y segmento \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\QAItem
+{A. EL BLINDAJE ¿Por qué Monterrey es insustituible?}
+{¿Qué factores del ecosistema regio (clústeres automotrices, cercanía física a Texas, T-MEC) actúan como un blindaje estratégico que ni Alemania ni los países asiáticos pueden ofrecer en este momento de crisis en el Golfo Pérsico?}
+{Monterrey es difícil de sustituir en este contexto porque combina ventajas que se refuerzan entre sí. La cercanía con Texas permite logística terrestre rápida y con menor exposición a disrupciones marítimas. El T-MEC aporta certidumbre y acceso preferencial al mercado estadounidense. Además, el ecosistema industrial regio ofrece proveedores, talento y encadenamientos productivos inmediatos. Frente a Alemania o Asia, más dependientes de rutas marítimas largas, Monterrey aporta resiliencia regional, menor riesgo geopolítico y tiempos de entrega más cortos.
+
+Además de la cercanía física, Monterrey ofrece compatibilidad horaria y cultural para operaciones de soporte de centros de datos orientadas al mercado de EE.UU., lo que mejora coordinación, tiempos de respuesta y calidad de servicio frente a Alemania o Asia.}
+
+\newpage
+
+\QAItem
+{B. EL TALÓN DE AQUILES ¿Qué podría destruir el proyecto?}
+{Identifique la variable macroeconómica en México (ej. inflación galopante, devaluación del peso o déficit fiscal por subsidios a gasolinas) que represente el mayor riesgo de quiebra técnica para la operación en Monterrey en los próximos 18 meses.}
+{El mayor riesgo de quiebra técnica en los próximos 18 meses es un deterioro macro por inflación alta y presión fiscal ligada a subsidios energéticos. Si el gobierno intenta contener precios de combustibles por mucho tiempo, puede aumentar déficit y subir la percepción de riesgo. Esto suele traducirse en tasas de interés más altas y en volatilidad del tipo de cambio. Para la planta, el impacto es directo. Se encarecen insumos importados, financiamiento y costos operativos.
+
+\par
+\vspace{0.2cm}
+\begin{center}
+\small
+\begin{tabular}{lcc}
+\toprule
+Riesgo & Probabilidad & Impacto financiero estimado \\
+\midrule
+Inflación galopante & Alta & -3 a -6 pp de margen \\
+Déficit fiscal por subsidios & Media & +150--300 pb en costo de financiamiento \\
+Devaluación del peso & Media & +8--12\% en costo de insumos importados \\
+\bottomrule
+\end{tabular}
+\end{center}
+}
+
+\newpage
+
+\QAItem
+{C. EL ACELERADOR ¿Cómo dominar en 2026?}
+{Si la empresa sobrevive a la 'Tormenta Geopolítica' del 2026 mediante una gestión resiliente, ¿cómo puede usar esta crisis para posicionarse como el proveedor dominante en Norteamérica, aprovechando el fracaso de los competidores que dependen de las rutas de Dubái y Ormuz?}
+{Si AI Green Data Center supera la crisis, puede diferenciarse como proveedor confiable en Norteamérica. La idea es acercar producción al cliente final y garantizar continuidad cuando otros fallan por depender de rutas como Dubái y Ormuz. Para lograrlo, conviene asegurar insumos críticos con contratos y diversificación, invertir en redundancia logística y firmar acuerdos de suministro de largo plazo en dólares con clientes estratégicos en EE.UU. Con entregas rápidas y estables, la empresa puede ganar participación, subir barreras de entrada y consolidarse como líder regional.}
+
+\newpage
+\noindent{\color{primary}\sffamily\Large\bfseries Conclusión}\par
+\vspace{0.25cm}
+\begingroup
+\setlength{\parindent}{0pt}\noindent\ignorespaces
+Monterrey sigue siendo una plataforma industrial atractiva en un entorno de crisis global, no porque siempre sea la opción de menor costo, sino porque combina integración regional, capacidad logística y un marco institucional que facilita exportar a Norteamérica. Aun cuando México exporta petróleo y cuenta con reservas, un choque de precios del crudo puede elevar los costos de la planta por la dependencia de gasolinas y refinados importados, y por los efectos indirectos sobre transporte, electricidad e insumos.
+
+Para sostener competitividad, la empresa debe tomar decisiones operativas guiadas por costos marginales y no por promedios. En paralelo, la estrategia comercial debe evitar automatismos de costo más margen en escenarios de estanflación. Resulta más sólido ajustar precios por valor y segmento, y proteger márgenes con contratos y gestión de riesgos.
+
+En el horizonte 2026, la resiliencia se construye con disciplina y anticipación.
+\begin{itemize}
+\item Priorice la cercanía a clientes de EE.UU. como ventaja central bajo el T-MEC.
+\item Monitoree inflación, tipo de cambio y tasas de interés porque se transmiten directo a costos e insumos importados.
+\item Reduzca vulnerabilidades con abastecimiento diversificado, inventarios críticos y redundancia logística.
+\item Use acuerdos de suministro de largo plazo con niveles de servicio claros para convertir la incertidumbre en diferenciador.
+\end{itemize}
+
+
+\par
+\endgroup
+
+\newpage
+\section*{Referencias}
+\begingroup
+\small\color{secondary}\setlength{\parindent}{0pt}
+\sloppy
+\Urlmuskip=0mu plus 1mu
+\setlength{\parskip}{0.4\baselineskip}
+\hangindent=1.25em
+\hangafter=1
+CNN en Español. (2026, 20 de marzo). \textit{El impacto de la guerra en Irán, de México a Argentina}. \url{https://cnnespanol.cnn.com/2026/03/20/latinoamerica/impacto-economico-guerra-iran-america-latina-orix}
+
+El Economista. (2026, 10 de marzo). \textit{La guerra vs. Irán, otro freno a los planes económicos del Gobierno}. \url{https://www.eleconomista.com.mx/opinion/guerra-vs-iran-freno-planes-economicos-gobierno-20260310-803492.html}
+
+Líder Empresarial. (s. f.). \textit{Estados Unidos contra Irán: ¿cómo afectaría a Nuevo León?} \url{https://www.liderempresarial.com/estados-unidos-contra-iran-como-afectaria-a-nuevo-leon/}
+
+Solís, B. (2026, 17 de marzo). \textit{Diversos impactos económicos por la guerra en Irán}. El Financiero. \url{https://www.elfinanciero.com.mx/opinion/benito-solis/2026/03/17/diversos-impactos-economicos-por-la-guerra-en-iran/}
+\par
+\endgroup
+
+\vspace{2cm}
+
+\end{document}
